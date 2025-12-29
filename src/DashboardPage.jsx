@@ -1,8 +1,20 @@
-// DashboardPage.jsx
 import React from 'react';
 import { Book, Users, Package, TrendingUp } from 'lucide-react';
 
-const DashboardPage = ({ stats, notifications }) => {
+const DashboardPage = () => {
+  const stats = [
+    { label: 'Total Books', value: '12,459', change: '+12%', icon: Book, color: 'bg-blue-500' },
+    { label: 'Active Members', value: '3,847', change: '+8%', icon: Users, color: 'bg-purple-500' },
+    { label: 'Books Issued', value: '892', change: '+23%', icon: Package, color: 'bg-green-500' },
+    { label: 'Overdue', value: '47', change: '-5%', icon: TrendingUp, color: 'bg-orange-500' }
+  ];
+
+  const notifications = [
+    { id: 1, title: 'New Book Arrival', desc: 'The Midnight Library added', time: '2 hours ago' },
+    { id: 2, title: 'Overdue Alert', desc: '5 books overdue this week', time: '5 hours ago' },
+    { id: 3, title: 'Member Request', desc: 'New membership application', time: '1 day ago' }
+  ];
+
   return (
     <div>
       {/* Welcome Section */}
@@ -37,12 +49,12 @@ const DashboardPage = ({ stats, notifications }) => {
         ))}
       </div>
 
-      {/* Notifications
+      {/* Notifications */}
       <div className="bg-white rounded-2xl shadow-lg p-6">
         <h3 className="font-bold text-slate-800 mb-4">Notifications</h3>
         <div className="space-y-4">
           {notifications.map(notif => (
-            <div key={notif.id} className="flex gap-3 p-3 bg-slate-50 rounded-xl hover:bg-slate-100 transition-colors">
+            <div key={notif.id} className="flex gap-3 p-3 bg-slate-50 rounded-xl hover:bg-slate-100 transition-colors cursor-pointer">
               <div className="w-2 h-2 bg-indigo-500 rounded-full mt-2"></div>
               <div className="flex-1">
                 <div className="font-medium text-sm text-slate-800">{notif.title}</div>
@@ -52,7 +64,7 @@ const DashboardPage = ({ stats, notifications }) => {
             </div>
           ))}
         </div>
-      </div> */}
+      </div>
     </div>
   );
 };

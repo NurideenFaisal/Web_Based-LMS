@@ -1,11 +1,22 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Search, Book, Users, Package, TrendingUp, Bell, Calendar, BookOpen, Menu, X, Plus, Edit2, Trash2, ArrowUpDown } from 'lucide-react'
 import BooksCollection from './BooksCollection' // import your page
 import DashboardPage from './DashboardPage'
+import MembersPage from './MembersPage'
+import IssuedBooksPage from './IssuedBooksPage'
+import CalendarPage from './CalendarPage'
 
 const LibraryManagementSystem = () => {
-  const [activeTab, setActiveTab] = useState('dashboard')
+  // Load saved tab from localStorage, or default to 'dashboard'
+  const [activeTab, setActiveTab] = useState(() => {
+    return localStorage.getItem('activeTab') || 'dashboard'
+  })
   const [sidebarOpen, setSidebarOpen] = useState(true)
+
+  // Save to localStorage whenever tab changes
+  useEffect(() => {
+    localStorage.setItem('activeTab', activeTab)
+  }, [activeTab]) 
 
   const menuItems = [
     { id: 'dashboard', label: 'Dashboard', icon: TrendingUp },
@@ -80,12 +91,7 @@ const LibraryManagementSystem = () => {
 
         {/* Content Area */}
         <main className="flex-1 overflow-auto p-8">
-          {activeTab === 'dashboard' && (
-            <div>
-              <h1 className="text-3xl font-bold text-slate-800">Dashboard</h1>
-              <p className="text-slate-600 mt-2">Welcome to your library management system.</p>
-            </div>
-          )}
+          {activeTab === 'dashboard' && ( <DashboardPage/> )}
 
           
           {activeTab === 'books' && (
@@ -94,24 +100,15 @@ const LibraryManagementSystem = () => {
 
           {/* Placeholder for other tabs */}
           {activeTab === 'members' && (
-            <div>
-              <h1 className="text-3xl font-bold text-slate-800">Members</h1>
-              <p className="text-slate-600 mt-2">Coming soon...</p>
-            </div>
+            <MembersPage />
           )}
 
           {activeTab === 'issued' && (
-            <div>
-              <h1 className="text-3xl font-bold text-slate-800">Issued Books</h1>
-              <p className="text-slate-600 mt-2">Coming soon...</p>
-            </div>
+            <IssuedBooksPage />
           )}
 
           {activeTab === 'calendar' && (
-            <div>
-              <h1 className="text-3xl font-bold text-slate-800">Calendar</h1>
-              <p className="text-slate-600 mt-2">Coming soon...</p>
-            </div>
+            <CalendarPage />
           )}
         </main>
       </div>
