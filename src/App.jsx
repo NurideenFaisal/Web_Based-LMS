@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { Search, Book, Users, Package, TrendingUp, Bell, Calendar, BookOpen, Menu, X, Plus, Edit2, Trash2, ArrowUpDown } from 'lucide-react'
-import BooksCollection from './BooksCollection' // import your page
-import DashboardPage from './DashboardPage'
-import MembersPage from './MembersPage'
-import IssuedBooksPage from './IssuedBooksPage'
-import CalendarPage from './CalendarPage'
+import BooksCollection from './Pages/BooksCollectionPage' // import your page
+import DashboardPage from './Pages/DashboardPage'
+import MembersPage from './Pages/MembersPage'
+import IssuedBooksPage from './Pages/IssuedBooksPage'
+import CalendarPage from './Pages/CalendarPage'
 
 const LibraryManagementSystem = () => {
   // Load saved tab from localStorage, or default to 'dashboard'
@@ -36,7 +36,7 @@ const LibraryManagementSystem = () => {
               <div className="w-10 h-10 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-lg">
                 L
               </div>
-              <span className="font-bold text-xl text-slate-800">FaisalHub</span>
+              <span className="font-bold text-xl text-slate-800">LibraryHub</span>
             </div>
           )}
           <button onClick={() => setSidebarOpen(!sidebarOpen)} className="p-2 hover:bg-slate-100 rounded-lg transition-colors">
